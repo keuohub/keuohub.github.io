@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>小红书时尚胶片封面海报展示</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Noto+Serif+SC:wght@500;700;900&family=Space+Grotesk:wght@500;700&display=swap');
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 40px;
+        background: #0d0f12;
+        color: #fff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+      }
+      .page-header {
+        text-align: center;
+        max-width: 800px;
+      }
+      .page-header h1 {
+        margin: 0 0 12px;
+        font-size: 28px;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #fff 40%, #f0a0b0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .page-header p {
+        margin: 0;
+        font-size: 15px;
+        color: #8b92a0;
+        line-height: 1.6;
+      }
+
+      /* 海报容器：3:4 比例 (900x1200 逻辑尺寸，展示宽度 450px) */
+      .poster {
+        position: relative;
+        width: 450px;
+        height: 600px;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 28px 24px 24px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* 胶片颗粒与暗角覆盖层 */
+      .poster::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%);
+        box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
+      }
+
+      /* 胶片感噪点 */
+      .poster::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.12;
+        background-image: repeating-radial-gradient(circle at 17% 32%, white 0, white 1px, transparent 1px, transparent 100%);
+        background-size: 6px 6px;
+      }
+
+      /* 海报 1：小红书 · 韩女咖啡馆胶片 · 亲密关系词典 */
+      .poster-love-female {
+        background-image: linear-gradient(to bottom, rgba(16, 12, 10, 0.72) 0%, rgba(20, 16, 14, 0.25) 35%, rgba(14, 10, 9, 0.88) 85%), url('/assets/covers/love-style-xhs-female.jpg');
+      }
+
+      /* 海报 2：小红书/抖快 · 韩男韩女深夜街头直闪 · 恋爱依恋张力 */
+      .poster-love-couple {
+        background-image: linear-gradient(to bottom, rgba(10, 10, 12, 0.75) 0%, rgba(10, 10, 12, 0.20) 40%, rgba(8, 8, 10, 0.90) 82%), url('/assets/covers/love-style-xhs-couple.jpg');
+      }
+
+      /* 海报 3：小红书 · 韩男极简策展冷感 · 精神内核质感 */
+      .poster-kernel-male {
+        background-image: linear-gradient(to bottom, rgba(14, 16, 18, 0.75) 0%, rgba(14, 16, 18, 0.20) 38%, rgba(10, 12, 14, 0.90) 82%), url('/assets/covers/quality-kernel-xhs-male.jpg');
+      }
+
+      .poster-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+      }
+
+      /* 顶部眉标与时尚代码 */
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Space Grotesk', monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        padding-bottom: 10px;
+      }
+      .top-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 700;
+        color: #ffb3c1;
+      }
+      .top-tag::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #ff4d6d;
+        box-shadow: 0 0 8px #ff4d6d;
+      }
+
+      /* 主标题区 */
+      .title-section {
+        margin-top: 14px;
+      }
+      .kicker-sub {
+        font-family: 'Cinzel', serif;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        color: rgba(255, 255, 255, 0.65);
+        margin: 0 0 6px;
+        text-transform: uppercase;
+      }
+      .main-title {
+        font-family: 'Noto Serif SC', 'Songti SC', serif;
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1.22;
+        letter-spacing: -0.02em;
+        color: #fff;
+        margin: 0;
+        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+      }
+      .title-hook {
+        margin: 10px 0 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #f7e1d7;
+        display: inline-block;
+        padding: 4px 10px;
+        background: rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 4px;
+        border-left: 2.5px solid #ff4d6d;
+      }
+
+      /* 底部悬念票卡与转化钩子 */
+      .bottom-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      /* 悬念矩阵浮层卡 */
+      .matrix-card {
+        background: rgba(18, 16, 16, 0.72);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+      .matrix-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 10.5px;
+        color: rgba(255, 255, 255, 0.55);
+        letter-spacing: 0.05em;
+        font-family: 'Space Grotesk', monospace;
+        margin-bottom: 8px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+        padding-bottom: 6px;
+      }
+      .matrix-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px 12px;
+      }
+      .matrix-item {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .matrix-item.revealed {
+        color: #fff;
+        font-weight: 600;
+      }
+      .matrix-item.revealed .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #ff4d6d;
+      }
+      .matrix-item.locked {
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .matrix-item.locked .lock-tag {
+        font-size: 9.5px;
+        padding: 1px 4px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ff99aa;
+      }
+
+      /* 底部行动条与背书 */
+      .action-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .trust-seal {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.65);
+        display: flex;
+        flex-direction: column;
+        line-height: 1.35;
+      }
+      .trust-seal strong {
+        color: #fff;
+        font-size: 11.5px;
+      }
+      .cta-btn {
+        background: linear-gradient(135deg, #ff4d6d, #e63946);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 9px 18px;
+        border-radius: 999px;
+        border: none;
+        box-shadow: 0 4px 16px rgba(230, 57, 70, 0.45);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* 胶片暗盒说明参数文字 */
+      .film-stamp {
+        position: absolute;
+        bottom: 8px;
+        right: 14px;
+        font-family: monospace;
+        font-size: 8px;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 0.15em;
+        pointer-events: none;
+      }
+
+      /* 精神内核定制色系 */
+      .poster-kernel-male .top-tag {
+        color: #90e0ef;
+      }
+      .poster-kernel-male .top-tag::before {
+        background: #00b4d8;
+        box-shadow: 0 0 8px #00b4d8;
+      }
+      .poster-kernel-male .title-hook {
+        border-left-color: #00b4d8;
+      }
+      .poster-kernel-male .matrix-item.revealed .dot {
+        background: #00b4d8;
+      }
+      .poster-kernel-male .cta-btn {
+        background: linear-gradient(135deg, #00b4d8, #0077b6);
+        box-shadow: 0 4px 16px rgba(0, 180, 216, 0.35);
+      }
+
+      .gallery-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+      }
+      .card-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+      .card-caption {
+        font-size: 14px;
+        font-weight: 600;
+        color: #d1d5db;
+        text-align: center;
+      }
+      .card-meta {
+        font-size: 12px;
+        color: #6b7280;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>小红书爆款时尚胶片海报 · 35mm 实拍画报</h1>
+      <p>
+        由 NANOBANANA 倾力制作：融入首尔汉南洞/圣水洞时尚街头实拍与微风胶片质感（Kodak Portra 400 &amp; Fuji Superia 800），韩女/韩男时尚人物与女性情绪审美，彻底杜绝 AI 假人感。
+      </p>
+    </header>
+
+    <div class="gallery-row">
+      <!-- 海报 1：小红书 · 韩女咖啡馆胶片 · 亲密关系词典 -->
+      <div class="card-wrap">
+        <div class="poster poster-love-female" id="poster1">
+          <div class="poster-content">
+            <div>
+              <div class="top-bar">
+                <span class="top-tag">L'AMOUR ARCHIVE</span>
+                <span>VOL.2026 // N°42</span>
+              </div>
+              <div class="title-section">
+                <p class="kicker-sub">ROMANCE PSYCHOLOGY DECODE</p>
+                <h2 class="main-title">测测你的恋爱<br />隐藏属性</h2>
+                <div class="title-hook">“撕开懂事伪装，看清潜意识依恋防御”</div>
+              </div>
+            </div>
+
+            <div class="bottom-section">
+              <div class="matrix-card">
+                <div class="matrix-card-header">
+                  <span>POTENTIAL ARCHETYPES // 4大原初底牌</span>
+                  <span>10 题速测</span>
+                </div>
+                <div class="matrix-grid">
+                  <div class="matrix-item revealed"><span class="dot"></span>热烈奔赴</div>
+                  <div class="matrix-item revealed"><span class="dot"></span>安稳治愈</div>
+                  <div class="matrix-item locked">清醒疏离 <span class="lock-tag">🔒 待解锁</span></div>
+                  <div class="matrix-item locked">随性乐活 <span class="lock-tag">🔒 待解锁</span></div>
+                </div>
+              </div>
+
+              <div class="action-row">
+                <div class="trust-seal">
+                  <strong>★ 成人依恋模型 (AAT) 深度校准</strong>
+                  <span>12.8W 人测过 · 92% 表示极其准确</span>
+                </div>
+                <div class="cta-btn">立即测测 ➔</div>
+              </div>
+            </div>
+          </div>
+          <div class="film-stamp">KODAK PORTRA 400 · CONTAX T2 35MM · RAW GRAIN</div>
+        </div>
+        <div class="card-caption">海报 A：小红书独家 · 韩女午后沉思胶片</div>
+        <div class="card-meta">首尔汉南洞咖啡馆 · 35mm 自然光与纸感美学</div>
+      </div>
+
+      <!-- 海报 2：小红书/抖快 · 韩系CP深夜街头直闪 -->
+      <div class="card-wrap">
+        <div class="poster poster-love-couple" id="poster2">
+          <div class="poster-content">
+            <div>
+              <div class="top-bar">
+                <span class="top-tag">MIDNIGHT SNAPSHOT</span>
+                <span>02:14 AM // SEOUL</span>
+              </div>
+              <div class="title-section">
+                <p class="kicker-sub">EMOTIONAL TENSION // 真实双人抓拍</p>
+                <h2 class="main-title">测测你在恋爱中<br />到底是哪种人格？</h2>
+                <div class="title-hook">“越相爱越内耗？10道题测出你们的死穴”</div>
+              </div>
+            </div>
+
+            <div class="bottom-section">
+              <div class="matrix-card">
+                <div class="matrix-card-header">
+                  <span>RELATIONSHIP DEFENSE // 亲密关系攻防</span>
+                  <span>双人深度互测</span>
+                </div>
+                <div class="matrix-grid">
+                  <div class="matrix-item revealed"><span class="dot"></span>全心投入型</div>
+                  <div class="matrix-item revealed"><span class="dot"></span>情绪稳定型</div>
+                  <div class="matrix-item locked">假装清醒 <span class="lock-tag">🔒 绝密</span></div>
+                  <div class="matrix-item locked">洒脱逃避 <span class="lock-tag">🔒 绝密</span></div>
+                </div>
+              </div>
+
+              <div class="action-row">
+                <div class="trust-seal">
+                  <strong>★ 绝无套路算法 · 直击潜意识</strong>
+                  <span>9.4W 情侣与单身青年测后破防</span>
+                </div>
+                <div class="cta-btn">测测你的 ➔</div>
+              </div>
+            </div>
+          </div>
+          <div class="film-stamp">FUJI SUPERIA 800 · OLYMPUS MJU II DIRECT FLASH</div>
+        </div>
+        <div class="card-caption">海报 B：小红书/抖快通用 · 韩系情侣街头直闪胶片</div>
+        <div class="card-meta">圣水洞深夜直闪抓拍 · 电影级情绪张力与真实代入感</div>
+      </div>
+
+      <!-- 海报 3：小红书 · 韩男极简策展冷感 · 精神内核质感 -->
+      <div class="card-wrap">
+        <div class="poster poster-kernel-male" id="poster3">
+          <div class="poster-content">
+            <div>
+              <div class="top-bar">
+                <span class="top-tag">MINIMALIST ARCHIVE</span>
+                <span>KERNEL // 01-04</span>
+              </div>
+              <div class="title-section">
+                <p class="kicker-sub">SPECIMEN IDENTIFICATION // 骨相化验单</p>
+                <h2 class="main-title">测测你的精神内核<br />是什么质感？</h2>
+                <div class="title-hook">“不探性格只看骨相 · 撕开喧嚣社交面具”</div>
+              </div>
+            </div>
+
+            <div class="bottom-section">
+              <div class="matrix-card">
+                <div class="matrix-card-header">
+                  <span>FOUR PRIMAL SPECIMENS // 4大原初骨相标本</span>
+                  <span>瑞士冷感化验</span>
+                </div>
+                <div class="matrix-grid">
+                  <div class="matrix-item revealed"><span class="dot"></span>月白 · 清冷沉潜</div>
+                  <div class="matrix-item revealed"><span class="dot"></span>旷野 · 理性破局</div>
+                  <div class="matrix-item locked">暖阳 · 纯粹 <span class="lock-tag">🔒 待化验</span></div>
+                  <div class="matrix-item locked">深海 · 渊薮 <span class="lock-tag">🔒 待化验</span></div>
+                </div>
+              </div>
+
+              <div class="action-row">
+                <div class="trust-seal">
+                  <strong>★ 瑞士现代极简主义人格标本规范</strong>
+                  <span>已化验 9.6W+ 份原矿样本</span>
+                </div>
+                <div class="cta-btn">开始化验 ➔</div>
+              </div>
+            </div>
+          </div>
+          <div class="film-stamp">LEICA M6 · 50MM F/1.4 · KODAK PORTRA 160 MUTED</div>
+        </div>
+        <div class="card-caption">海报 C：小红书高调性 · 策展冷感韩男胶片</div>
+        <div class="card-meta">首尔现代艺术馆 · 极简主义建筑光影与高级留白</div>
+      </div>
+    </div>
+  </body>
+</html>

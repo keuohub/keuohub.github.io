@@ -1,0 +1,39 @@
+/*
+ * 主题模板。复制成 <测试编号>.css 放在同目录，改里面的值就生效。
+ * 引擎会自动加载 themes/<测试编号>.css，不需要注册，也不需要改代码。
+ *
+ * 编号：quality-kernel / love-style / hok-hero / delta-operator / valorant-agent
+ * 预览：http://localhost:5173/test.html?t=<编号>&p=xhs
+ *
+ * 每个 {} 里就是该测试在该平台下的皮肤。
+ * 主题文件优先级最高：变量能改，具体样式（.result-tag、.btn、.option 之类）也能直接覆盖，不用改引擎文件。
+ * 图片请放 assets/ 下，并且必须写成以 / 开头的绝对路径（例：url("/assets/themes/love/bg.png")）。
+ * 加了自己的图就同时给 --bg-image-scrim 一个值（0 到 1，越大遮罩越重、文字越好读）。
+ */
+
+body[data-test='测试编号'][data-theme='xhs'] {
+  /* --bg: 页面底色（纯色，别用渐变，分享图只认纯色） */
+  /* --bg-glow: 页面顶部那圈光晕，用低透明度颜色 */
+  /* --card: 卡片底色 */
+  /* --card-line: 描边 */
+  /* --ink: 主文字 */
+  /* --ink-soft: 次要文字 */
+  /* --accent: 唯一强调色，按钮和重点文字用它 */
+  /* --accent-ink: 强调色上的文字，一般是白 */
+  /* --shadow: 卡片投影 */
+  /* --font-title: 标题字体，分享图也会跟着用 */
+  /* --font-body: 正文字体 */
+  /* --title-weight: 标题字重 400-800 */
+  /* --tag-size: 结果页大标签字号，38-52px */
+  /* --radius: 圆角，6-24px */
+  /* --pad: 页面左右内边距，20-24px */
+  /* --bg-image: 背景图，没有就不写 */
+  /* --bg-image-scrim: 背景图上的遮罩浓度 0-1 */
+}
+
+body[data-test='测试编号'][data-theme='douyin'],
+body[data-test='测试编号'][data-theme='kuaishou'] {
+}
+
+body[data-test='测试编号'][data-theme='video'] {
+}

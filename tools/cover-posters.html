@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>爆款封面海报生成器 · 预览与下载</title>
+    <link rel="stylesheet" href="../src/styles.css" />
+    <style>
+      :root {
+        --ui-bg: #121316;
+        --ui-card: #1c1d22;
+        --ui-line: #2e3038;
+        --ui-ink: #f0f2f5;
+        --ui-sub: #9aa0a6;
+        --ui-brand: #ff3366;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        background: var(--ui-bg);
+        color: var(--ui-ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      }
+      header {
+        max-width: 1200px;
+        margin: 0 auto 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--ui-line);
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .badge-pro {
+        font-size: 11px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: linear-gradient(135deg, #ff3366, #ff6b3d);
+        color: #fff;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      p.subtitle {
+        margin: 0;
+        font-size: 14px;
+        color: var(--ui-sub);
+        line-height: 1.6;
+      }
+      .controls {
+        max-width: 1200px;
+        margin: 0 auto 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        background: var(--ui-card);
+        padding: 16px 20px;
+        border-radius: 12px;
+        border: 1px solid var(--ui-line);
+      }
+      .ctrl-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      label {
+        font-size: 13px;
+        color: var(--ui-sub);
+        font-weight: 600;
+      }
+      select, button {
+        height: 38px;
+        padding: 0 14px;
+        border-radius: 8px;
+        border: 1px solid var(--ui-line);
+        background: #25272e;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.15s ease;
+      }
+      select:hover, button:hover {
+        border-color: #4a4d57;
+      }
+      button.btn-primary {
+        background: linear-gradient(135deg, #ff3366, #ff6b3d);
+        border: none;
+        font-weight: 600;
+        color: #fff;
+      }
+      button.btn-primary:hover {
+        opacity: 0.92;
+        transform: translateY(-1px);
+      }
+      .gallery {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        gap: 32px;
+        align-items: start;
+      }
+      .poster-card {
+        background: var(--ui-card);
+        border-radius: 16px;
+        border: 1px solid var(--ui-line);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+      }
+      .poster-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      .poster-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ui-ink);
+      }
+      .poster-meta {
+        font-size: 12px;
+        color: var(--ui-sub);
+      }
+      .canvas-wrap {
+        position: relative;
+        width: 100%;
+        max-width: 360px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #000;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .poster-footer {
+        width: 100%;
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .download-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #2a2d36;
+        border: 1px solid #3c404d;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+      .download-btn:hover {
+        background: #363a45;
+        border-color: #555b6d;
+      }
+      .tip-box {
+        max-width: 1200px;
+        margin: 40px auto 0;
+        padding: 20px 24px;
+        border-radius: 12px;
+        background: rgba(255, 51, 102, 0.08);
+        border: 1px solid rgba(255, 51, 102, 0.2);
+        font-size: 13px;
+        line-height: 1.8;
+        color: #f0a0b0;
+      }
+      .tip-box strong {
+        color: #ff6b8b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>爆款封面海报工作台 <span class="badge-pro">Editorial Master</span></h1>
+      <p class="subtitle">
+        融合互联网传播学（痛点唤醒、悬念落差、社交货币、高客单信任背书）与高级杂志海报视觉。专为小红书（3:4 黄金构图）与抖音/快手（9:16 极速视觉锤）定制，直接用于信息流投放与社媒发帖引流。
+      </p>
+    </header>
+
+    <div class="controls">
+      <div class="ctrl-group">
+        <label for="selTest">测评工具：</label>
+        <select id="selTest">
+          <option value="love-style">恋爱隐藏属性 (love-style)</option>
+          <option value="quality-kernel">精神内核质感 (quality-kernel)</option>
+          <option value="hok-hero">王者荣耀英雄 (hok-hero)</option>
+          <option value="delta-operator">三角洲行动 (delta-operator)</option>
+          <option value="valorant-agent">无畏契约特工 (valorant-agent)</option>
+        </select>
+      </div>
+
+      <div class="ctrl-group">
+        <label for="selPlatform">平台分发版式：</label>
+        <select id="selPlatform">
+          <option value="xhs">小红书首图 (3:4 艺术画报)</option>
+          <option value="douyin">抖音/快手封面 (9:16 视觉高反差)</option>
+          <option value="kuaishou">快手老式热敏票 (9:16 硬边黑框)</option>
+          <option value="video">视频号典雅信笺 (9:16 沉稳端庄)</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" id="btnRefresh">重新生成海报</button>
+      <button id="btnExportAll">批量下载全平台高清海报</button>
+    </div>
+
+    <main class="gallery" id="gallery">
+      <!-- 渲染卡片挂载区 -->
+    </main>
+
+    <div class="tip-box">
+      <strong>高级海报设计师设计规范：</strong><br />
+      1. <strong>黄金 3 秒视觉锤</strong>：主标题采用大字号极简排版，配以独家手绘倾斜角标与高亮框选，直接截断用户滑屏惯性。<br />
+      2. <strong>落差悬念钩子 (Cliffhanger)</strong>：海报展示 4 种类型矩阵（2 款已解锁示意 + 2 款密级问号），直击窥探欲，不付费就看不到自己的答案。<br />
+      3. <strong>专业权威信用戳</strong>：打上学术模型背书（如“基于成人依恋理论 / 12.8W 样本校准”），消除廉价信息流感，支撑 1.9~9.9 元的高转化付费心理。<br />
+      4. <strong>物理肌理一体化</strong>：与网页和分享图完全共享 CSS 物理肌理底图与颜色变量，实现无缝视觉一致性。
+    </div>
+
+    <script type="module">
+      import { themeOf } from '../src/quiz.js';
+
+      const POSTER_DATA = {
+        'love-style': {
+          kickerEn: 'ROMANCE ARCHIVE // PSYCHOLOGY DECODE',
+          badge: '2026 情感深潜报告',
+          authority: '基于成人依恋理论 (AAT) 深度测评模型',
+          social: '已完成 128,400+ 次依恋测试 · 92% 表示极其准确',
+          previewItems: [
+            { name: '热烈奔赴', desc: '全心全意，爱是毫无保留的奔赴', open: true },
+            { name: '安稳治愈', desc: '情绪稳定，治愈内耗的定海神针', open: true },
+            { name: '清醒疏离', desc: '保持距离，爱情只是锦上添花', open: false },
+            { name: '随性乐活', desc: '开心第一，洒脱坦荡不拖泥带水', open: false },
+          ],
+          cta: '点击链接立即解锁你的完整恋爱底牌'
+        },
+        'quality-kernel': {
+          kickerEn: 'SPECIMEN IDENTIFICATION // KERNEL 01-04',
+          badge: '骨相人格实验室',
+          authority: '瑞士极简主义人格标本化验标准',
+          social: '已收录 94,600+ 份精神原矿样本 · 撕开虚伪社交面具',
+          previewItems: [
+            { name: '月白 · 清冷', desc: '独处沉潜，骨子里保留最纯粹的宁静', open: true },
+            { name: '旷野 · 破局', desc: '理性坚韧，任何困境都能杀出重围', open: true },
+            { name: '暖阳 · 纯粹', desc: '温柔向阳，天然具备抚慰人心的光感', open: false },
+            { name: '深海 · 渊薮', desc: '静水流深，藏着无人知晓的庞大宇宙', open: false },
+          ],
+          cta: '点击开启化验 · 寻找你骨子里的不可替代性'
+        },
+        'hok-hero': {
+          kickerEn: 'HONOR OF KINGS // DESTINED HERO CODEX',
+          badge: '王者峡谷命定英雄',
+          authority: '峡谷高光决策直觉 × 潜意识性格映射',
+          social: '162,000+ 召唤师本命共鸣 · 验证你的上分底色',
+          previewItems: [
+            { name: '孙策 · 惊涛骇浪', desc: '带头冲锋，关键时刻永远能够托付后背', open: true },
+            { name: '李白 · 诗酒仗剑', desc: '洒脱飘逸，顺风成神逆风独行', open: true },
+            { name: '妲己 · 洞察控场', desc: '看似柔顺，核心秒杀绝不手软', open: false },
+            { name: '诸葛亮 · 算无遗策', desc: '运筹帷幄，逆境绝境也能步步反杀', open: false },
+          ],
+          cta: '测测峡谷里哪个英雄才是现实中的你'
+        },
+        'delta-operator': {
+          kickerEn: 'CLASSIFIED // TOP SECRET HAZARD PROTOCOL',
+          badge: '烽火地带特战密级',
+          authority: '特战任务生存率评估准则',
+          social: '战区实战模拟 87,000+ 局 · 死亡撤离率真实判定',
+          previewItems: [
+            { name: '无名 · 隐匿老六', desc: '不打没把握的仗，安全撤离才是最高胜利', open: true },
+            { name: '威龙 · 火力先锋', desc: '正义爆轰，无论多少人架枪直接硬冲', open: true },
+            { name: '蜂医 · 战地天使', desc: '封烟拉人打药，全队翻盘的真正核心', open: false },
+            { name: '红狼 · 攻坚战狂', desc: '正面强突破点，撕裂一切防御阵线', open: false },
+          ],
+          cta: '立即进入战区 · 测测你在队伍里的不可替代定位'
+        },
+        'valorant-agent': {
+          kickerEn: 'VALORANT PROTOCOL // AGENT DNA CODEX',
+          badge: '无畏契约职业档案',
+          authority: '职业战术竞技 DNA 心理矩阵',
+          social: '115,000+ 特工完成鉴定 · 找出你的绝境翻盘直觉',
+          previewItems: [
+            { name: '蝰蛇 · 剧毒支配', desc: '掌控战局视线，让对手在窒息中慢性死亡', open: true },
+            { name: '夜露 · 次元刺客', desc: '神出鬼没，永远从敌人意想不到的盲区致命一击', open: true },
+            { name: '贤者 · 圣光屏障', desc: '阻断进攻节奏，永远为队友提供绝对安全感', open: false },
+            { name: '铁臂 · 撼地重锤', desc: '撕裂地形，以无法反抗的绝对力量主导正面', open: false },
+          ],
+          cta: '测出你的特工基因代码 · 突破竞技瓶颈'
+        }
+      };
+
+      const selTest = document.getElementById('selTest');
+      const selPlatform = document.getElementById('selPlatform');
+      const btnRefresh = document.getElementById('btnRefresh');
+      const btnExportAll = document.getElementById('btnExportAll');
+      const gallery = document.getElementById('gallery');
+
+      function unquote(raw) {
+        return String(raw).trim().replace(/^['"]|['"]$/g, '');
+      }
+
+      function roundRect(ctx, x, y, w, h, r) {
+        const radius = Math.min(r, w / 2, h / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.arcTo(x + w, y, x + w, y + h, radius);
+        ctx.arcTo(x + w, y + h, x, y + h, radius);
+        ctx.arcTo(x, y + h, x, y, radius);
+        ctx.arcTo(x, y, x + w, y, radius);
+        ctx.closePath();
+      }
+
+      function drawNoise(ctx, w, h, amount, alpha) {
+        const imgData = ctx.getImageData(0, 0, w, h);
+        const data = imgData.data;
+        for (let i = 0; i < data.length; i += 16) {
+          const n = (Math.random() - 0.5) * amount;
+          data[i] = Math.min(255, Math.max(0, data[i] + n));
+          data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + n));
+          data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + n));
+        }
+        ctx.putImageData(imgData, 0, 0);
+      }
+
+      function wrap(ctx, text, maxWidth) {
+        const lines = [];
+        let line = '';
+        for (const char of String(text)) {
+          const next = line + char;
+          if (ctx.measureText(next).width > maxWidth && line) {
+            lines.push(line);
+            line = char;
+          } else {
+            line = next;
+          }
+        }
+        if (line) lines.push(line);
+        return lines;
+      }
+
+      function drawBarcode(ctx, x, y, w, h, color) {
+        ctx.fillStyle = color;
+        let cur = x;
+        const seed = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6];
+        let idx = 0;
+        while (cur < x + w - 4) {
+          const barW = (seed[idx % seed.length] % 3) + 1;
+          const spaceW = (seed[(idx + 3) % seed.length] % 3) + 2;
+          ctx.fillRect(cur, y, barW, h);
+          cur += barW + spaceW;
+          idx++;
+        }
+      }
+
+      async function renderCoverPoster(testId, platform) {
+        // 先挂载对应的主题 CSS
+        let link = document.getElementById('dynTheme');
+        if (!link) {
+          link = document.createElement('link');
+          link.id = 'dynTheme';
+          link.rel = 'stylesheet';
+          document.head.append(link);
+        }
+        link.href = `../themes/${testId}.css`;
+        await new Promise((r) => {
+          link.onload = r;
+          link.onerror = r;
+          setTimeout(r, 600);
+        });
+
+        document.body.dataset.theme = themeOf(platform);
+        document.body.dataset.test = testId;
+
+        const testRes = await fetch(`../tests/${testId}.json`);
+        const testData = await testRes.json();
+        const copyMeta = POSTER_DATA[testId] || {};
+
+        const css = getComputedStyle(document.body);
+        const val = (name, fallback) => css.getPropertyValue(name).trim() || fallback;
+
+        const bg = val('--bg', '#121212');
+        const cardBg = val('--card', '#1a1a1a');
+        const ink = val('--ink', '#ffffff');
+        const inkSoft = val('--ink-soft', '#888888');
+        const accent = val('--accent', '#ff3366');
+        const accentInk = val('--accent-ink', '#ffffff');
+        const cardLine = val('--card-line', 'rgba(255,255,255,0.15)');
+        const fontTitle = val('--font-title', 'sans-serif');
+        const titleWeight = val('--title-weight', '700');
+        const kicker = unquote(val('--poster-kicker', '')) || copyMeta.kickerEn || 'ARCHIVE';
+        const serial = unquote(val('--poster-serial', '')) || 'VOL.2026 // N° 01';
+
+        // 尺寸：小红书 900x1200 (3:4)，其余 900x1600 (9:16)
+        const isXhs = platform === 'xhs';
+        const W = 900;
+        const H = isXhs ? 1200 : 1600;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = W;
+        canvas.height = H;
+        const ctx = canvas.getContext('2d');
+
+        // 1. 底色
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+
+        // 2. 底图（如果有）
+        const bgImgMatch = /url\((['"]?)(.+?)\1\)/.exec(val('--bg-image', ''));
+        if (bgImgMatch) {
+          try {
+            const img = new Image();
+            img.src = bgImgMatch[2];
+            await new Promise((res) => {
+              img.onload = res;
+              img.onerror = res;
+            });
+            if (img.width > 0) {
+              ctx.drawImage(img, 0, 0, W, H);
+              const scrim = val('--bg-image-scrim', '0.7');
+              ctx.fillStyle = isNaN(scrim) ? scrim : `rgba(0,0,0,${scrim})`;
+              ctx.fillRect(0, 0, W, H);
+            }
+          } catch(e) {}
+        }
+
+        // 3. 装饰背景网格 / 斜切条纹
+        ctx.save();
+        ctx.strokeStyle = cardLine;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        // 顶部与底部边缘标线
+        ctx.moveTo(48, 48);
+        ctx.lineTo(W - 48, 48);
+        ctx.moveTo(48, H - 48);
+        ctx.lineTo(W - 48, H - 48);
+        ctx.stroke();
+
+        // 四角准星十字标
+        const drawCross = (cx, cy) => {
+          ctx.beginPath();
+          ctx.moveTo(cx - 10, cy);
+          ctx.lineTo(cx + 10, cy);
+          ctx.moveTo(cx, cy - 10);
+          ctx.lineTo(cx, cy + 10);
+          ctx.stroke();
+        };
+        drawCross(48, 48);
+        drawCross(W - 48, 48);
+        drawCross(48, H - 48);
+        drawCross(W - 48, H - 48);
+        ctx.restore();
+
+        // 4. 顶部眉标栏 (Header / Kicker / Barcode)
+        let curY = 82;
+        ctx.font = `600 15px -apple-system, sans-serif`;
+        ctx.fillStyle = accent;
+        ctx.fillText(kicker.toUpperCase(), 54, curY);
+
+        ctx.font = `500 14px monospace`;
+        ctx.fillStyle = inkSoft;
+        const serialW = ctx.measureText(serial).width;
+        ctx.fillText(serial, W - 54 - serialW, curY);
+
+        // 条形码小装饰
+        drawBarcode(ctx, W - 54 - serialW, curY + 6, serialW, 14, inkSoft);
+
+        // 5. 顶部分类徽标卡片
+        curY += 46;
+        ctx.save();
+        ctx.fillStyle = accent;
+        roundRect(ctx, 54, curY, 180, 32, 4);
+        ctx.fill();
+        ctx.fillStyle = accentInk;
+        ctx.font = `700 13px sans-serif`;
+        ctx.fillText(`●  ${copyMeta.badge || '深度性格剖析'}`, 68, curY + 21);
+        ctx.restore();
+
+        // 6. 主标题锤 (Big Poster Title)
+        curY += 76;
+        ctx.fillStyle = ink;
+        ctx.font = `${titleWeight} 52px ${fontTitle}`;
+        const titleLines = wrap(ctx, testData.title, W - 110);
+        for (const line of titleLines) {
+          ctx.fillText(line, 54, curY);
+          curY += 68;
+        }
+
+        // 7. 副标题金句高亮横条 (Marker Highlight Subtitle)
+        curY += 6;
+        ctx.save();
+        ctx.font = `600 24px ${fontTitle}`;
+        const subLines = wrap(ctx, `“ ${testData.subtitle} ”`, W - 120);
+        for (const line of subLines) {
+          const textW = ctx.measureText(line).width;
+          // 荧光笔高亮衬底
+          ctx.fillStyle = accent;
+          ctx.globalAlpha = 0.22;
+          ctx.fillRect(52, curY - 26, textW + 16, 34);
+          ctx.globalAlpha = 1.0;
+
+          ctx.fillStyle = ink;
+          ctx.fillText(line, 60, curY);
+          curY += 42;
+        }
+        ctx.restore();
+
+        // 8. 核心爆点：4 种类型矩阵预览悬念区 (Curiosity & Cliffhanger Matrix)
+        curY += 24;
+        const matrixCardH = isXhs ? 350 : 510;
+        ctx.save();
+        ctx.fillStyle = cardBg;
+        ctx.strokeStyle = cardLine;
+        ctx.lineWidth = 1.5;
+        roundRect(ctx, 54, curY, W - 108, matrixCardH, 12);
+        ctx.fill();
+        ctx.stroke();
+
+        // 矩阵卡片内部标头
+        ctx.fillStyle = inkSoft;
+        ctx.font = `700 13px sans-serif`;
+        ctx.fillText(`POTENTIAL ARCHETYPES // 测评命中图谱（4大原初原型）`, 76, curY + 36);
+
+        // 撕角齿孔小装饰
+        ctx.fillStyle = bg;
+        ctx.beginPath();
+        ctx.arc(54, curY + 54, 8, -Math.PI / 2, Math.PI / 2);
+        ctx.arc(W - 54, curY + 54, 8, Math.PI / 2, -Math.PI / 2);
+        ctx.fill();
+
+        // 4 项列表
+        let itemY = curY + 70;
+        const items = copyMeta.previewItems || [];
+        const itemH = isXhs ? 62 : 98;
+
+        items.forEach((item, idx) => {
+          // 底部分隔线
+          if (idx > 0) {
+            ctx.strokeStyle = cardLine;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(76, itemY - 14);
+            ctx.lineTo(W - 76, itemY - 14);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+
+          if (item.open) {
+            // 已揭晓项（建立预期）
+            ctx.fillStyle = accent;
+            ctx.font = `800 20px ${fontTitle}`;
+            ctx.fillText(item.name, 76, itemY + 18);
+
+            ctx.fillStyle = ink;
+            ctx.font = `400 15px sans-serif`;
+            ctx.fillText(item.desc, 76, itemY + 44);
+
+            // 状态标
+            ctx.fillStyle = inkSoft;
+            ctx.font = `600 12px monospace`;
+            ctx.fillText(`[SAMPLE A]`, W - 160, itemY + 24);
+          } else {
+            // 锁定悬念项（激发窥探与付费欲望）
+            ctx.fillStyle = inkSoft;
+            ctx.font = `800 20px ${fontTitle}`;
+            ctx.fillText(`${item.name.slice(0, 2)} · · · [ 🔒 付费深度解锁 ]`, 76, itemY + 18);
+
+            // 虚化打码条
+            ctx.fillStyle = cardLine;
+            ctx.fillRect(76, itemY + 28, W - 240, 16);
+
+            // 绝密戳
+            ctx.save();
+            ctx.strokeStyle = accent;
+            ctx.lineWidth = 1.5;
+            roundRect(ctx, W - 176, itemY + 6, 94, 26, 4);
+            ctx.stroke();
+            ctx.fillStyle = accent;
+            ctx.font = `700 11px sans-serif`;
+            ctx.fillText(`待显影 99%`, W - 164, itemY + 23);
+            ctx.restore();
+          }
+
+          itemY += itemH;
+        });
+        ctx.restore();
+
+        // 9. 底部权威背书与社交证明 (Authority & Social Proof)
+        curY += matrixCardH + 34;
+        ctx.save();
+        // 认证印章感
+        ctx.strokeStyle = accent;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.arc(80, curY + 24, 22, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fillStyle = accent;
+        ctx.font = `800 11px sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.fillText(`PASS`, 80, curY + 28);
+        ctx.textAlign = 'left';
+
+        ctx.fillStyle = ink;
+        ctx.font = `600 15px sans-serif`;
+        ctx.fillText(copyMeta.authority, 116, curY + 18);
+
+        ctx.fillStyle = inkSoft;
+        ctx.font = `400 13px sans-serif`;
+        ctx.fillText(copyMeta.social, 116, curY + 40);
+        ctx.restore();
+
+        // 10. 底部号召行动按钮与撕票条 (Action CTA Footer)
+        curY += 66;
+        ctx.save();
+        ctx.fillStyle = accent;
+        roundRect(ctx, 54, curY, W - 108, 62, 8);
+        ctx.fill();
+
+        ctx.fillStyle = accentInk;
+        ctx.font = `700 20px sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.fillText(`➔  ${copyMeta.cta || '立即开始测试 · 揭晓真实底牌'}`, W / 2, curY + 39);
+        ctx.restore();
+
+        return canvas;
+      }
+
+      async function updateGallery() {
+        gallery.innerHTML = '<div style="color:var(--ui-sub);padding:40px;text-align:center;width:100%;">正在全力绘制高解析海报…</div>';
+        const testId = selTest.value;
+        const platform = selPlatform.value;
+
+        const canvas = await renderCoverPoster(testId, platform);
+        gallery.innerHTML = '';
+
+        const card = document.createElement('div');
+        card.className = 'poster-card';
+
+        const header = document.createElement('div');
+        header.className = 'poster-header';
+        header.innerHTML = `
+          <div>
+            <div class="poster-title">${selTest.options[selTest.selectedIndex].text}</div>
+            <div class="poster-meta">${selPlatform.options[selPlatform.selectedIndex].text} · ${canvas.width}×${canvas.height}px</div>
+          </div>
+        `;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'canvas-wrap';
+        wrap.append(canvas);
+
+        const footer = document.createElement('div');
+        footer.className = 'poster-footer';
+
+        const dlBtn = document.createElement('button');
+        dlBtn.className = 'download-btn';
+        dlBtn.innerHTML = `<span>⬇ 保存这张超清封面海报 (PNG)</span>`;
+        dlBtn.onclick = () => {
+          const a = document.createElement('a');
+          a.download = `cover-${testId}-${platform}.png`;
+          a.href = canvas.toDataURL('image/png');
+          a.click();
+        };
+
+        footer.append(dlBtn);
+        card.append(header, wrap, footer);
+        gallery.append(card);
+      }
+
+      selTest.addEventListener('change', updateGallery);
+      selPlatform.addEventListener('change', updateGallery);
+      btnRefresh.addEventListener('click', updateGallery);
+
+      btnExportAll.addEventListener('click', async () => {
+        btnExportAll.disabled = true;
+        btnExportAll.textContent = '正在批量导出 20 张高清海报…';
+        const tests = ['love-style', 'quality-kernel', 'hok-hero', 'delta-operator', 'valorant-agent'];
+        const platforms = ['xhs', 'douyin', 'kuaishou', 'video'];
+
+        for (const t of tests) {
+          for (const p of platforms) {
+            const c = await renderCoverPoster(t, p);
+            const a = document.createElement('a');
+            a.download = `cover-${t}-${p}.png`;
+            a.href = c.toDataURL('image/png');
+            a.click();
+            await new Promise(r => setTimeout(r, 200));
+          }
+        }
+        btnExportAll.disabled = false;
+        btnExportAll.textContent = '批量下载完成！';
+      });
+
+      // 初始化初次渲染
+      updateGallery();
+    </script>
+  </body>
+</html>

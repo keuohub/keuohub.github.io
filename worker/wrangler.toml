@@ -1,0 +1,14 @@
+name = "quiz-codes"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# 跑完 `npx wrangler d1 create quiz-codes` 之后，把命令输出里那段
+# [[d1_databases]] 配置整段贴到下面，并去掉行首的 #
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "quiz-codes"
+# database_id = "把命令输出的 id 填在这里"
+
+# 查统计用的口令，自己设一个长一点的
+# [vars]
+# ADMIN_SECRET = "改成一个只有你知道的长口令"

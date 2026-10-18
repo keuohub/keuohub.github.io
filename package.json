@@ -1,0 +1,17 @@
+{
+  "name": "viral-quiz-h5",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node scripts/validate.mjs",
+    "test": "node --test src/quiz.test.mjs worker/test.mjs",
+    "dist": "node scripts/report-distribution.mjs",
+    "links": "node scripts/links.mjs",
+    "assets": "node scripts/make-backgrounds.mjs",
+    "review": "node scripts/review-themes.mjs",
+    "shots": "node scripts/shot.mjs",
+    "codes": "node scripts/make-codes.mjs"
+  }
+}

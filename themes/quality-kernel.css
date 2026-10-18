@@ -1,0 +1,170 @@
+/* ==========================================================================
+ * 精神内核 (quality-kernel) —— 档案馆牛皮纸 / 瑞士网格实验单
+ * 核心：彻底的冷峻、理性、表单感，像一张真实的人格成分检验报告
+ * ========================================================================== */
+
+/* 小红书：牛皮纸档案卡 + 打字机黑字 + 森林绿检验章 */
+body[data-test='quality-kernel'][data-theme='xhs'] {
+  --bg: #EAE6DF;
+  --bg-glow: rgba(29, 92, 63, 0.08);
+  --card: #F5F2EB;
+  --card-line: #1E1E1C;
+  --ink: #1E1E1C;
+  --ink-soft: #66645E;
+  --accent: #1D5C3F;
+  --accent-ink: #F5F2EB;
+  --shadow: 0 2px 0 #1E1E1C;
+  --font-title: 'Songti SC', 'Noto Serif SC', serif;
+  --font-body: 'PingFang SC', -apple-system, sans-serif;
+  --title-weight: 700;
+  --tag-size: 40px;
+  --radius: 0px;
+  --pad: 24px;
+  --poster-kicker: '人格成分化验单 · 样本分析';
+  --poster-serial: '检字 #8841';
+  --poster-marker-alpha: 0.18;
+  --bg-image: url('/assets/covers/quality-kernel-xhs-male.jpg');
+  --bg-image-scrim: rgba(234, 230, 223, 0.82);
+}
+
+/* 抖音：X 光片 / 暗房底片（深蓝黑底、冷白字、克莱因蓝高亮） */
+body[data-test='quality-kernel'][data-theme='douyin'] {
+  --bg: #0B0E14;
+  --bg-glow: rgba(0, 102, 255, 0.18);
+  --card: #121722;
+  --card-line: #2E384D;
+  --ink: #EDF2F7;
+  --ink-soft: #8A99AD;
+  --accent: #3B82F6;
+  --accent-ink: #FFFFFF;
+  --shadow: 0 0 0 1px #2E384D;
+  --font-title: 'PingFang SC', system-ui, sans-serif;
+  --font-body: 'PingFang SC', system-ui, sans-serif;
+  --title-weight: 900;
+  --tag-size: 46px;
+  --radius: 2px;
+  --pad: 24px;
+  --poster-kicker: '深层心理底片 · 显影报告';
+  --poster-serial: '样本 100% 匹配';
+  --poster-marker-alpha: 0.35;
+  --bg-image: url('/assets/themes/quality-kernel/douyin.png');
+  --bg-image-scrim: rgba(11, 14, 20, 0.72);
+}
+
+/* 快手：药品说明书 / 工业质检合格证（白底、纯黑框、警示橙红） */
+body[data-test='quality-kernel'][data-theme='kuaishou'] {
+  --bg: #E8ECEF;
+  --bg-glow: rgba(217, 70, 23, 0.12);
+  --card: #FFFFFF;
+  --card-line: #000000;
+  --ink: #000000;
+  --ink-soft: #4A4A4A;
+  --accent: #D94617;
+  --accent-ink: #FFFFFF;
+  --shadow: 4px 4px 0px #000000;
+  --font-title: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 900;
+  --tag-size: 48px;
+  --radius: 0px;
+  --pad: 22px;
+  --poster-kicker: '出厂设置检验单 · 核心成分';
+  --poster-serial: '质检合格';
+  --poster-marker-alpha: 0.25;
+  --bg-image: url('/assets/themes/quality-kernel/kuaishou.png');
+  --bg-image-scrim: rgba(232, 236, 239, 0.65);
+}
+
+/* 视频号：民国图书借阅卡 / 博物志标本签（古旧米灰、深褐墨线、青金石蓝） */
+body[data-test='quality-kernel'][data-theme='video'] {
+  --bg: #E6E2D8;
+  --bg-glow: rgba(43, 76, 102, 0.08);
+  --card: #F4F1EA;
+  --card-line: #4A453D;
+  --ink: #1F1D1A;
+  --ink-soft: #635D54;
+  --accent: #2B4C66;
+  --accent-ink: #F4F1EA;
+  --shadow: 0 4px 12px rgba(31, 29, 26, 0.08);
+  --font-title: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 700;
+  --tag-size: 40px;
+  --radius: 0px;
+  --pad: 26px;
+  --poster-kicker: '心性博物志 · 标本档案';
+  --poster-serial: '藏字第柒号';
+  --poster-marker-alpha: 0.18;
+  --bg-image: url('/assets/themes/quality-kernel/video.png');
+  --bg-image-scrim: rgba(230, 226, 216, 0.65);
+}
+
+/* ==========================================================================
+ * 瑞士网格表单结构：像化验单一样用实线分栏
+ * ========================================================================== */
+
+body[data-test='quality-kernel'] .result::before {
+  content: var(--poster-kicker, '精神内核检验报告单');
+  display: block;
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--card-line);
+}
+
+body[data-test='quality-kernel'] .result-tag {
+  display: block;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--card-line);
+}
+
+body[data-test='quality-kernel'] .result-anchor {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--card-line);
+  padding: 6px 10px;
+  margin-bottom: 14px;
+  border-radius: 0;
+}
+
+body[data-test='quality-kernel'] .result-anchor::before {
+  content: '【稀有度测定】 ';
+  color: var(--accent);
+}
+
+body[data-test='quality-kernel'] .result-quote {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.55;
+  padding: 10px 12px;
+  margin: 0 0 14px;
+  background: var(--bg-glow);
+  border-left: 4px solid var(--accent);
+  border-radius: 0;
+}
+
+body[data-test='quality-kernel'] .result-desc {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+body[data-test='quality-kernel'] .option {
+  border: 1.5px solid var(--card-line);
+  border-radius: 0;
+}
+
+body[data-test='quality-kernel'] .option b {
+  border-right: 1.5px solid var(--card-line);
+  padding-right: 10px;
+  margin-right: 10px;
+  color: var(--accent);
+}

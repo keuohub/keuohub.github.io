@@ -1,0 +1,145 @@
+/* ==========================================================================
+ * 三角洲行动干员 (delta-operator) —— 战术终端 HUD / 绝密军用档案袋
+ * 核心：硬核军事工业风、全直角、等宽数据感、荧光绿与战术琥珀橙
+ * ========================================================================== */
+
+/* 小红书：绝密牛皮纸军用档案袋（战术卡其、军规黑字、机密红章） */
+body[data-test='delta-operator'][data-theme='xhs'] {
+  --bg: #E2DFD7;
+  --bg-glow: rgba(196, 43, 28, 0.10);
+  --card: #EDEAE2;
+  --card-line: #2B2A27;
+  --ink: #171715;
+  --ink-soft: #5C5A54;
+  --accent: #C42B1C;
+  --accent-ink: #FFFFFF;
+  --shadow: 4px 4px 0px #2B2A27;
+  --font-title: 'PingFang SC', system-ui, sans-serif;
+  --font-body: 'PingFang SC', system-ui, sans-serif;
+  --title-weight: 900;
+  --tag-size: 42px;
+  --radius: 0px;
+  --pad: 24px;
+  --poster-kicker: 'G.T.I. 绝密人事档案 · 干员评估';
+  --poster-serial: '密级：绝密';
+  --poster-marker-alpha: 0.20;
+  --bg-image: url('/assets/themes/delta-operator/xhs.png');
+  --bg-image-scrim: rgba(226, 223, 215, 0.65);
+}
+
+/* 抖音：夜视仪战术绿 HUD（纯正三角洲 UI 黑灰底 + 荧光绿） */
+body[data-test='delta-operator'][data-theme='douyin'] {
+  --bg: #090D0B;
+  --bg-glow: rgba(0, 230, 118, 0.15);
+  --card: #101714;
+  --card-line: #23382E;
+  --ink: #E8F5EE;
+  --ink-soft: #789686;
+  --accent: #00E676;
+  --accent-ink: #090D0B;
+  --shadow: 0 0 0 1px #00E676;
+  --font-title: 'PingFang SC', system-ui, sans-serif;
+  --font-body: 'PingFang SC', system-ui, sans-serif;
+  --title-weight: 900;
+  --tag-size: 46px;
+  --radius: 0px;
+  --pad: 24px;
+  --poster-kicker: 'G.T.I. 战术终端 · 干员适格率测定';
+  --poster-serial: 'STATUS: ACTIVE';
+  --poster-marker-alpha: 0.30;
+  --bg-image: url('/assets/themes/delta-operator/douyin.png');
+  --bg-image-scrim: rgba(9, 13, 11, 0.72);
+}
+
+/* 快手：战地警报（深炭黑底、琥珀战术黄、硬核装甲感） */
+body[data-test='delta-operator'][data-theme='kuaishou'] {
+  --bg: #11100E;
+  --bg-glow: rgba(255, 179, 0, 0.18);
+  --card: #1C1A17;
+  --card-line: #4A4233;
+  --ink: #FAF6F0;
+  --ink-soft: #9E9585;
+  --accent: #FFB300;
+  --accent-ink: #11100E;
+  --shadow: 4px 4px 0px #FFB300;
+  --font-title: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 900;
+  --tag-size: 48px;
+  --radius: 0px;
+  --pad: 24px;
+  --poster-kicker: '阿萨拉战区 · 干员战力档案';
+  --poster-serial: '准许部署';
+  --poster-marker-alpha: 0.35;
+  --bg-image: url('/assets/themes/delta-operator/kuaishou.png');
+  --bg-image-scrim: rgba(17, 16, 14, 0.70);
+}
+
+/* 视频号：冷战情报局胶片风（深军绿灰、米白纸感字、复古铜金） */
+body[data-test='delta-operator'][data-theme='video'] {
+  --bg: #161A18;
+  --bg-glow: rgba(212, 163, 89, 0.14);
+  --card: #202623;
+  --card-line: #3D4742;
+  --ink: #EAE6DF;
+  --ink-soft: #919C96;
+  --accent: #D4A359;
+  --accent-ink: #161A18;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --font-title: 'PingFang SC', sans-serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 800;
+  --tag-size: 42px;
+  --radius: 0px;
+  --pad: 26px;
+  --poster-kicker: '战术指挥部 · 兵种性格评定';
+  --poster-serial: '档案编号 09';
+  --poster-marker-alpha: 0.28;
+  --bg-image: url('/assets/themes/delta-operator/video.png');
+  --bg-image-scrim: rgba(22, 26, 24, 0.70);
+}
+
+/* ==========================================================================
+ * 战术 HUD 直角与装甲框
+ * ========================================================================== */
+
+body[data-test='delta-operator'] .result::before {
+  content: var(--poster-kicker, '[ G.T.I. TACTICAL DOSSIER // 干员档案已解锁 ]');
+  display: block;
+  margin-top: 0;
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px dashed var(--card-line);
+}
+
+body[data-test='delta-operator'] .result-anchor {
+  display: inline-block;
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-ink);
+  background: var(--accent);
+  padding: 2px 10px;
+  margin-bottom: 14px;
+  border-radius: 0;
+}
+
+body[data-test='delta-operator'] .result-quote {
+  font-size: 17px;
+  font-weight: 800;
+  padding: 10px 14px;
+  margin: 10px 0 16px;
+  background: var(--bg-glow);
+  border-left: 4px solid var(--accent);
+  border-radius: 0;
+}
+
+body[data-test='delta-operator'] .option {
+  border: 1px solid var(--card-line);
+  border-left: 3px solid var(--accent);
+  border-radius: 0;
+}

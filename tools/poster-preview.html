@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>分享图预览</title>
+    <link rel="stylesheet" href="../src/styles.css" />
+    <style>
+      body {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        padding: 18px;
+        align-items: flex-start;
+      }
+      figure {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+        width: 320px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+      }
+      figcaption {
+        margin-top: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+      .hint {
+        width: 100%;
+        margin: 0 0 6px;
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+    </style>
+  </head>
+  <body>
+    <p class="hint">
+      用法：在地址后面加 ?t=测试编号&amp;p=平台，一次看完整套测试的四种结果分享图。测试编号如 love-style、hok-hero、delta-operator、valorant-agent、quality-kernel，平台如 xhs、douyin、kuaishou、video。
+    </p>
+    <script type="module">
+      import { buildCard } from '../src/card.js';
+      import { themeOf } from '../src/quiz.js';
+
+      const params = new URLSearchParams(location.search);
+      const testId = params.get('t') || 'love-style';
+      const platform = params.get('p') || 'xhs';
+
+      document.body.dataset.theme = themeOf(platform);
+      document.body.dataset.test = testId;
+
+      const themeLink = document.createElement('link');
+      themeLink.rel = 'stylesheet';
+      themeLink.href = `../themes/${testId}.css`;
+      document.head.append(themeLink);
+      await new Promise((resolve) => {
+        themeLink.addEventListener('load', resolve);
+        themeLink.addEventListener('error', resolve);
+      });
+
+      const test = await (await fetch(`../tests/${testId}.json`)).json();
+      document.title = `${test.title} · ${platform} · 分享图预览`;
+
+      for (const [key, result] of Object.entries(test.results)) {
+        const figure = document.createElement('figure');
+        figure.append(await buildCard(test, result, platform, null));
+        const caption = document.createElement('figcaption');
+        caption.textContent = `${result.tag}（${key}）`;
+        figure.append(caption);
+        document.body.append(figure);
+      }
+    </script>
+  </body>
+</html>

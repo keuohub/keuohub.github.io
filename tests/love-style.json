@@ -1,0 +1,161 @@
+{
+  "id": "love-style",
+  "title": "测测你的恋爱隐藏属性",
+  "subtitle": "10 题，看清你在恋爱里的真实样子",
+  "intro": "不问你是不是恋爱脑，只问你会怎么做。10 道恋爱场景题，测出你藏起来的那一面。",
+  "platforms": ["xhs", "video", "douyin", "kuaishou"],
+  "estimatedMinutes": 3,
+  "tags": ["恋爱性格", "情感共鸣", "高收藏"],
+  "dimensions": {
+    "passionate": { "label": "热烈奔赴", "index": 0 },
+    "steady": { "label": "安稳治愈", "index": 1 },
+    "detached": { "label": "清醒疏离", "index": 2 },
+    "easygoing": { "label": "随性乐活", "index": 3 }
+  },
+  "scoring": {
+    "optionMap": { "A": "passionate", "B": "steady", "C": "detached", "D": "easygoing" },
+    "tieBreaker": { "question": 1, "fallbackOrder": ["passionate", "steady", "detached", "easygoing"] }
+  },
+  "questions": [
+    {
+      "text": "对方消息回慢了，你第一反应是？",
+      "options": [
+        { "key": "A", "text": "有点不安，会忍不住想是不是自己说错话了", "scores": { "passionate": 1 } },
+        { "key": "B", "text": "没关系，忙完了自然会回", "scores": { "steady": 1 } },
+        { "key": "C", "text": "不回就不回，我也不找他", "scores": { "detached": 1 } },
+        { "key": "D", "text": "直接打电话问，憋着难受", "scores": { "easygoing": 1 } }
+      ]
+    },
+    {
+      "text": "第一次约会，你会选哪里？",
+      "options": [
+        { "key": "A", "text": "温馨的小餐厅，安静好聊天", "scores": { "steady": 1 } },
+        { "key": "B", "text": "游乐园或者密室，互动性强", "scores": { "easygoing": 1 } },
+        { "key": "C", "text": "网红打卡店，拍照好看", "scores": { "passionate": 1 } },
+        { "key": "D", "text": "随便，对方定就行", "scores": { "detached": 1 } }
+      ]
+    },
+    {
+      "text": "吵架之后，你通常会？",
+      "options": [
+        { "key": "A", "text": "很难过，等着对方来哄", "scores": { "passionate": 1 } },
+        { "key": "B", "text": "冷静下来，主动找对方沟通", "scores": { "steady": 1 } },
+        { "key": "C", "text": "冷战，谁先低头谁就输了", "scores": { "detached": 1 } },
+        { "key": "D", "text": "转头就忘，主动找对方搭话", "scores": { "easygoing": 1 } }
+      ]
+    },
+    {
+      "text": "谈恋爱后，你的生活重心会？",
+      "options": [
+        { "key": "A", "text": "围着对方转，什么事都想着对方", "scores": { "passionate": 1 } },
+        { "key": "B", "text": "一半一半，爱情生活都重要", "scores": { "steady": 1 } },
+        { "key": "C", "text": "还是自己的生活为主，爱情只是调剂", "scores": { "detached": 1 } },
+        { "key": "D", "text": "完全跟着对方节奏走", "scores": { "passionate": 1 } }
+      ]
+    },
+    {
+      "text": "对方跟你说烦心事，你会？",
+      "options": [
+        { "key": "A", "text": "共情安慰，陪对方一起难过", "scores": { "passionate": 1 } },
+        { "key": "B", "text": "帮对方分析问题，想解决办法", "scores": { "steady": 1 } },
+        { "key": "C", "text": "安静听着，不知道说什么", "scores": { "detached": 1 } },
+        { "key": "D", "text": "带对方转移注意力，去开心一下", "scores": { "easygoing": 1 } }
+      ]
+    },
+    {
+      "text": "你更在意恋爱里的？",
+      "options": [
+        { "key": "A", "text": "安全感，对方的偏爱和例外", "scores": { "passionate": 1 } },
+        { "key": "B", "text": "舒适感，两个人相处轻松", "scores": { "steady": 1 } },
+        { "key": "C", "text": "自由感，不被束缚的感觉", "scores": { "detached": 1 } },
+        { "key": "D", "text": "仪式感，惊喜和浪漫", "scores": { "easygoing": 1 } }
+      ]
+    },
+    {
+      "text": "喜欢一个人，你会？",
+      "options": [
+        { "key": "A", "text": "默默放在心里，不敢主动", "scores": { "detached": 1 } },
+        { "key": "B", "text": "慢慢靠近，水到渠成", "scores": { "steady": 1 } },
+        { "key": "C", "text": "直接表白，行就行不行就拉倒", "scores": { "easygoing": 1 } },
+        { "key": "D", "text": "暗示对方，等对方主动", "scores": { "passionate": 1 } }
+      ]
+    },
+    {
+      "text": "恋爱中你最害怕的是？",
+      "options": [
+        { "key": "A", "text": "被忽略，被冷落", "scores": { "passionate": 1 } },
+        { "key": "B", "text": "吵架和矛盾", "scores": { "steady": 1 } },
+        { "key": "C", "text": "失去自我，被绑定", "scores": { "detached": 1 } },
+        { "key": "D", "text": "对方变心", "scores": { "passionate": 1 } }
+      ]
+    },
+    {
+      "text": "你觉得好的爱情是？",
+      "options": [
+        { "key": "A", "text": "天天粘在一起，不分你我", "scores": { "passionate": 1 } },
+        { "key": "B", "text": "互相扶持，一起变好", "scores": { "steady": 1 } },
+        { "key": "C", "text": "各自独立，互相吸引", "scores": { "detached": 1 } },
+        { "key": "D", "text": "开心快乐，享受当下", "scores": { "easygoing": 1 } }
+      ]
+    },
+    {
+      "text": "分手之后，你通常是？",
+      "options": [
+        { "key": "A", "text": "很久走不出来，反复内耗", "scores": { "passionate": 1 } },
+        { "key": "B", "text": "好聚好散，慢慢放下", "scores": { "steady": 1 } },
+        { "key": "C", "text": "快速走出来，开始新生活", "scores": { "easygoing": 1 } },
+        { "key": "D", "text": "假装没事，其实心里很难受", "scores": { "detached": 1 } }
+      ]
+    }
+  ],
+  "results": {
+    "passionate": {
+      "tag": "热烈奔赴型",
+      "quote": "爱就全心全意，永远真诚热烈",
+      "anchor": "仅 21% 的人是这个类型",
+      "desc": "你在爱情里永远是最投入的那个，一旦爱上就全心全意，把所有的偏爱和温柔都给对方。喜欢粘人，需要很多的安全感和回应。偶尔会有点敏感多疑、容易胡思乱想，但你的爱永远最真挚最热烈。",
+      "share": {
+        "xhs": "测出来是热烈奔赴型！你的恋爱隐藏属性是什么✨",
+        "douyin": "我居然是热烈奔赴型恋爱脑！你们呢？😂",
+        "kuaishou": "我居然是热烈奔赴型恋爱脑！你们呢？😂",
+        "video": "超准的恋爱性格测试，我是热烈奔赴型，快来测测你的～"
+      }
+    },
+    "steady": {
+      "tag": "安稳治愈型",
+      "quote": "温柔又坚定，是爱情里的定海神针",
+      "anchor": "占比 34%，最受欢迎的恋爱类型",
+      "desc": "你是恋爱里的安全型人格，情绪稳定，温柔包容。和你在一起永远很舒服，你懂得换位思考，会照顾对方的情绪。遇到问题会主动沟通，不会冷战不会作。是大家心目中最理想的恋人，靠谱又安心。",
+      "share": {
+        "xhs": "测出来是安稳治愈型！你的恋爱隐藏属性是什么✨",
+        "douyin": "我居然是安稳治愈型！你们恋爱里是哪种人格？😂",
+        "kuaishou": "我居然是安稳治愈型！你们恋爱里是哪种人格？😂",
+        "video": "超准的恋爱性格测试，我是安稳治愈型，快来测测你的～"
+      }
+    },
+    "detached": {
+      "tag": "清醒疏离型",
+      "quote": "爱情是锦上添花，不是雪中送炭",
+      "anchor": "仅 18% 的人是这个类型",
+      "desc": "你在爱情里永远保持清醒，不会因为恋爱失去自我。有自己的生活和节奏，不喜欢粘人，也讨厌过度束缚。看起来有点冷淡，其实只是不擅长表达爱意，比起轰轰烈烈，你更相信细水长流。",
+      "share": {
+        "xhs": "测出来是清醒疏离型！你的恋爱隐藏属性是什么✨",
+        "douyin": "我居然是清醒疏离型！你们恋爱里是哪种人格？😂",
+        "kuaishou": "我居然是清醒疏离型！你们恋爱里是哪种人格？😂",
+        "video": "超准的恋爱性格测试，我是清醒疏离型，快来测测你的～"
+      }
+    },
+    "easygoing": {
+      "tag": "随性乐活型",
+      "quote": "恋爱主打一个开心，合得来就处",
+      "anchor": "占比 27%，最洒脱的恋爱类型",
+      "desc": "你在爱情里永远拿得起放得下，喜欢就在一起，不喜欢就分开，从不拖泥带水。不喜欢内耗和纠结，谈恋爱最重要的就是开心。偶尔有点没心没肺，但你的洒脱和快乐永远能感染身边的人。",
+      "share": {
+        "xhs": "测出来是随性乐活型！你的恋爱隐藏属性是什么✨",
+        "douyin": "我居然是随性乐活型恋爱脑！你们呢？😂",
+        "kuaishou": "我居然是随性乐活型恋爱脑！你们呢？😂",
+        "video": "超准的恋爱性格测试，我是随性乐活型，快来测测你的～"
+      }
+    }
+  }
+}

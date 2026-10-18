@@ -1,0 +1,206 @@
+/* ==========================================================================
+ * 恋爱隐藏属性 (love-style) —— 去 AI 化重做版
+ * 核心：砍掉柔光渐变与胶囊标签，做成字典词条 / 午夜备忘录 / 街头小票 / 中式信笺
+ * ========================================================================== */
+
+/* 小红书：字典词条 / 独立书店藏书票（直角纸感、宋体、朱砂红印章点缀） */
+body[data-test='love-style'][data-theme='xhs'] {
+  --bg: #F4F1EA;
+  --bg-glow: rgba(194, 59, 43, 0.08);
+  --card: #FAF8F5;
+  --card-line: #221E1D;
+  --ink: #1A1716;
+  --ink-soft: #6E6662;
+  --accent: #C23B2B;
+  --accent-ink: #FAF8F5;
+  --shadow: 4px 4px 0px rgba(26, 23, 22, 0.12);
+  --font-title: 'Songti SC', 'Noto Serif SC', 'STSong', serif;
+  --font-body: 'PingFang SC', -apple-system, sans-serif;
+  --title-weight: 700;
+  --tag-size: 42px;
+  --radius: 2px;
+  --pad: 26px;
+  --poster-kicker: '亲密关系词典 · 词条释义';
+  --poster-serial: '页码 P.042';
+  --poster-marker-alpha: 0.18;
+  --bg-image: url('/assets/covers/love-style-xhs-female.jpg');
+  --bg-image-scrim: rgba(244, 241, 234, 0.78);
+}
+
+/* 抖音：午夜手机备忘录（纯黑高反差、荧光涂鸦粉、零多余装饰） */
+body[data-test='love-style'][data-theme='douyin'] {
+  --bg: #0A0A0A;
+  --bg-glow: rgba(255, 42, 109, 0.15);
+  --card: #121212;
+  --card-line: #333333;
+  --ink: #F5F5F3;
+  --ink-soft: #888884;
+  --accent: #FF2A6D;
+  --accent-ink: #FFFFFF;
+  --shadow: 0 0 0 1px #2A2A2A;
+  --font-title: 'PingFang SC', system-ui, sans-serif;
+  --font-body: 'PingFang SC', system-ui, sans-serif;
+  --title-weight: 900;
+  --tag-size: 48px;
+  --radius: 4px;
+  --pad: 24px;
+  --poster-kicker: '备忘录 · 凌晨 02:14 仅自己可见';
+  --poster-serial: '已置顶';
+  --poster-marker-alpha: 0.42;
+  --bg-image: url('/assets/covers/love-style-xhs-couple.jpg');
+  --bg-image-scrim: rgba(10, 10, 10, 0.84);
+}
+
+/* 快手：老式热敏小票 / 复古大字报（米白底、纯黑粗框、硬边立体阴影） */
+body[data-test='love-style'][data-theme='kuaishou'] {
+  --bg: #EFECE6;
+  --bg-glow: rgba(217, 35, 46, 0.12);
+  --card: #FFFFFF;
+  --card-line: #111111;
+  --ink: #111111;
+  --ink-soft: #555555;
+  --accent: #D9232E;
+  --accent-ink: #FFFFFF;
+  --shadow: 5px 5px 0px #111111;
+  --font-title: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 900;
+  --tag-size: 50px;
+  --radius: 0px;
+  --pad: 22px;
+  --poster-kicker: '恋爱坦白局 · 诊断单';
+  --poster-serial: '凭单对号入座';
+  --poster-marker-alpha: 0.28;
+  --bg-image: url('/assets/themes/love-style/kuaishou.png');
+  --bg-image-scrim: rgba(239, 236, 230, 0.60);
+}
+
+/* 视频号：竖排韵味中式信笺（竹纸色、黛墨、胭脂印泥） */
+body[data-test='love-style'][data-theme='video'] {
+  --bg: #EDE7DC;
+  --bg-glow: rgba(148, 41, 35, 0.08);
+  --card: #F7F4ED;
+  --card-line: #8C7A6B;
+  --ink: #231D19;
+  --ink-soft: #6E6259;
+  --accent: #942923;
+  --accent-ink: #F7F4ED;
+  --shadow: 0 4px 12px rgba(35, 29, 25, 0.08);
+  --font-title: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+  --font-body: 'Songti SC', 'PingFang SC', serif;
+  --title-weight: 700;
+  --tag-size: 42px;
+  --radius: 2px;
+  --pad: 28px;
+  --poster-kicker: '浮生小记 · 姻缘笺';
+  --poster-serial: '岁次丙午';
+  --poster-marker-alpha: 0.16;
+  --bg-image: url('/assets/themes/love-style/video.png');
+  --bg-image-scrim: rgba(237, 231, 220, 0.65);
+}
+
+/* ==========================================================================
+ * 去 AI 塑料感：实线边框、票据式排版
+ * ========================================================================== */
+
+body[data-test='love-style'] .start-kicker {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: 2px;
+  margin-bottom: 16px;
+  border-radius: 0;
+  background: transparent;
+}
+
+body[data-test='love-style'] .option {
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+  background: var(--card);
+  transition: transform 0.12s ease, background-color 0.12s ease;
+}
+
+body[data-test='love-style'] .option:active {
+  transform: translate(2px, 2px);
+  background: var(--bg-glow);
+}
+
+body[data-test='love-style'] .option b {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+/* 结果页：实体单据头，文案与分享图共用 --poster-kicker */
+body[data-test='love-style'] .result::before {
+  content: var(--poster-kicker, '亲密关系词条');
+  display: block;
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  border-bottom: 1.5px solid var(--card-line);
+}
+
+body[data-test='love-style'] .result-tag {
+  display: block;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+body[data-test='love-style'] .result-quote {
+  font-family: var(--font-title);
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 12px 0;
+  margin: 12px 0 16px;
+  border-top: 1px dashed var(--card-line);
+  border-bottom: 1px dashed var(--card-line);
+  background: transparent;
+  border-radius: 0;
+}
+
+body[data-test='love-style'] .result-anchor {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  padding: 2px 8px;
+  border-radius: 0;
+  margin-bottom: 14px;
+  background: transparent;
+}
+
+body[data-test='love-style'] .result-desc {
+  font-size: 15px;
+  line-height: 1.78;
+  color: var(--ink);
+  text-align: justify;
+}
+
+body[data-test='love-style'] .result-meme {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-left: 3px solid var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  border-radius: 0;
+}
+
+body[data-test='love-style'] .btn.btn-primary {
+  border-radius: var(--radius);
+  font-weight: 700;
+  border: 1.5px solid var(--card-line);
+}

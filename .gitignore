@@ -1,0 +1,9 @@
+# 明文卡密和后台数据，绝对不要提交或部署
+codes-明文.csv
+private/
+
+# 截图和本地调试产物
+shots/
+node_modules/
+.DS_Store
+.agents/

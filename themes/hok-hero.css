@@ -1,0 +1,154 @@
+/* ==========================================================================
+ * 王者荣耀本命英雄 (hok-hero) —— 巅峰赛结算面板 / 国风英雄命签
+ * 核心：拒绝塑料紫光，还原冷锻黑金 + 切角金属框 + 英雄台词刻印
+ * ========================================================================== */
+
+/* 小红书：国风英雄命签 / 玉牒泥金笺（宋锦米白、故宫朱红与赤金、极细双线框） */
+body[data-test='hok-hero'][data-theme='xhs'] {
+  --bg: #F2ECE1;
+  --bg-glow: rgba(184, 134, 45, 0.12);
+  --card: #FAF6F0;
+  --card-line: #B8862D;
+  --ink: #241C15;
+  --ink-soft: #756553;
+  --accent: #A62B2B;
+  --accent-ink: #FAF6F0;
+  --shadow: 0 6px 20px rgba(36, 28, 21, 0.08);
+  --font-title: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 700;
+  --tag-size: 44px;
+  --radius: 2px;
+  --pad: 26px;
+  --poster-kicker: '长安司天监 · 本命英雄命签';
+  --poster-serial: '上上签';
+  --poster-marker-alpha: 0.18;
+  --bg-image: url('/assets/themes/hok-hero/xhs.png');
+  --bg-image-scrim: rgba(242, 236, 225, 0.60);
+}
+
+/* 抖音：巅峰赛 S 级结算黑金面板（玄铁深蓝黑、鎏金亮黄、电竞锐利切角） */
+body[data-test='hok-hero'][data-theme='douyin'] {
+  --bg: #0B0F19;
+  --bg-glow: rgba(229, 184, 105, 0.16);
+  --card: #131A29;
+  --card-line: #5C4928;
+  --ink: #F5EEDF;
+  --ink-soft: #9E9482;
+  --accent: #E5B869;
+  --accent-ink: #0B0F19;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+  --font-title: 'PingFang SC', system-ui, sans-serif;
+  --font-body: 'PingFang SC', system-ui, sans-serif;
+  --title-weight: 900;
+  --tag-size: 48px;
+  --radius: 2px;
+  --pad: 24px;
+  --poster-kicker: '巅峰赛潜能测定 · 本命契合度';
+  --poster-serial: '国服级共鸣';
+  --poster-marker-alpha: 0.32;
+  --bg-image: url('/assets/themes/hok-hero/douyin.png');
+  --bg-image-scrim: rgba(11, 15, 25, 0.68);
+}
+
+/* 快手：五杀高光大字战报（深褐红黑底、烈焰赤金、字极大极狠） */
+body[data-test='hok-hero'][data-theme='kuaishou'] {
+  --bg: #140D0B;
+  --bg-glow: rgba(255, 140, 56, 0.18);
+  --card: #211512;
+  --card-line: #7A4424;
+  --ink: #FFF6F0;
+  --ink-soft: #B89C8E;
+  --accent: #FF8C38;
+  --accent-ink: #140D0B;
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.7);
+  --font-title: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 900;
+  --tag-size: 50px;
+  --radius: 2px;
+  --pad: 24px;
+  --poster-kicker: '峡谷本命鉴定 · 战力面板';
+  --poster-serial: '天命所归';
+  --poster-marker-alpha: 0.35;
+  --bg-image: url('/assets/themes/hok-hero/kuaishou.png');
+  --bg-image-scrim: rgba(20, 13, 11, 0.65);
+}
+
+/* 视频号：水墨武侠风云录（宣纸暖灰底、苍松墨黑、丹砂印） */
+body[data-test='hok-hero'][data-theme='video'] {
+  --bg: #EAE4D7;
+  --bg-glow: rgba(168, 50, 40, 0.10);
+  --card: #F5F1E8;
+  --card-line: #594E42;
+  --ink: #1C1815;
+  --ink-soft: #665B50;
+  --accent: #A83228;
+  --accent-ink: #F5F1E8;
+  --shadow: 0 6px 18px rgba(28, 24, 21, 0.10);
+  --font-title: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 700;
+  --tag-size: 42px;
+  --radius: 2px;
+  --pad: 26px;
+  --poster-kicker: '王者风云录 · 英雄本纪';
+  --poster-serial: '卷一';
+  --poster-marker-alpha: 0.18;
+  --bg-image: url('/assets/themes/hok-hero/video.png');
+  --bg-image-scrim: rgba(234, 228, 215, 0.62);
+}
+
+/* ==========================================================================
+ * 中式切角金属框 + 居中仪式感
+ * ========================================================================== */
+
+body[data-test='hok-hero'] .result::before {
+  content: var(--poster-kicker, '王者本命英雄共鸣鉴定');
+  display: block;
+  margin-top: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--card-line);
+}
+
+body[data-test='hok-hero'] .result-tag {
+  display: block;
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+body[data-test='hok-hero'] .result-anchor {
+  display: table;
+  margin: 0 auto 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-ink);
+  background: var(--accent);
+  padding: 3px 14px;
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 8px 100%, 0 50%);
+}
+
+body[data-test='hok-hero'] .result-quote {
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 12px 14px;
+  margin: 10px 0 18px;
+  background: var(--bg-glow);
+  border-top: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line);
+}
+
+body[data-test='hok-hero'] .option {
+  border: 1px solid var(--card-line);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}

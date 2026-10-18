@@ -1,0 +1,185 @@
+/* ==========================================================================
+ * 无畏契约特工 (valorant-agent) —— 官方 Brutalist 潮酷海报风
+ * 核心：禁止圆角与柔光。官方三色 #ECE8E1 / #0F1923 / #FF4655 + 硬边错位阴影
+ * ========================================================================== */
+
+/* 小红书：官方米白潮牌画报（米灰底 + 深海黑 + 瓦红） */
+body[data-test='valorant-agent'][data-theme='xhs'] {
+  --bg: #ECE8E1;
+  --bg-glow: rgba(255, 70, 85, 0.12);
+  --card: #F8F6F2;
+  --card-line: #0F1923;
+  --ink: #0F1923;
+  --ink-soft: #5A626A;
+  --accent: #FF4655;
+  --accent-ink: #FFFFFF;
+  --shadow: 6px 6px 0px #0F1923;
+  --font-title: 'PingFang SC', 'Impact', system-ui, sans-serif;
+  --font-body: 'PingFang SC', system-ui, sans-serif;
+  --title-weight: 900;
+  --tag-size: 46px;
+  --radius: 0px;
+  --pad: 24px;
+  --poster-kicker: 'VALORANT // 源能特工契合度档案';
+  --poster-serial: 'AGENT // 01';
+  --poster-marker-alpha: 0.25;
+  --poster-watermark: 'VCT';
+  --bg-image: url('/assets/themes/valorant-agent/xhs.png');
+  --bg-image-scrim: rgba(236, 232, 225, 0.65);
+}
+
+/* 抖音：暗夜竞技场（经典深蓝黑底 + 炸裂红 + 硬边错位框） */
+body[data-test='valorant-agent'][data-theme='douyin'] {
+  --bg: #0F1923;
+  --bg-glow: rgba(255, 70, 85, 0.20);
+  --card: #182533;
+  --card-line: #ECE8E1;
+  --ink: #ECE8E1;
+  --ink-soft: #8B97A2;
+  --accent: #FF4655;
+  --accent-ink: #FFFFFF;
+  --shadow: 6px 6px 0px #FF4655;
+  --font-title: 'PingFang SC', system-ui, sans-serif;
+  --font-body: 'PingFang SC', system-ui, sans-serif;
+  --title-weight: 900;
+  --tag-size: 48px;
+  --radius: 0px;
+  --pad: 24px;
+  --poster-kicker: 'VALORANT // 本命特工定位报告';
+  --poster-serial: 'RADIANT // 无畏战魂';
+  --poster-marker-alpha: 0.40;
+  --poster-watermark: 'ACE';
+  --bg-image: url('/assets/themes/valorant-agent/douyin.png');
+  --bg-image-scrim: rgba(15, 25, 35, 0.70);
+}
+
+/* 快手：街头涂鸦撞色大字报（米白底、极粗黑框、瓦红硬阴影） */
+body[data-test='valorant-agent'][data-theme='kuaishou'] {
+  --bg: #E5E0D8;
+  --bg-glow: rgba(255, 70, 85, 0.16);
+  --card: #FFFFFF;
+  --card-line: #0F1923;
+  --ink: #0F1923;
+  --ink-soft: #4F5861;
+  --accent: #FF4655;
+  --accent-ink: #FFFFFF;
+  --shadow: 7px 7px 0px #FF4655;
+  --font-title: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 900;
+  --tag-size: 50px;
+  --radius: 0px;
+  --pad: 22px;
+  --poster-kicker: '瓦学弟瓦学妹 · 真实段位与本命鉴定';
+  --poster-serial: 'ACE // 全场最佳';
+  --poster-marker-alpha: 0.30;
+  --poster-watermark: 'ACE';
+  --bg-image: url('/assets/themes/valorant-agent/kuaishou.png');
+  --bg-image-scrim: rgba(229, 224, 216, 0.60);
+}
+
+/* 视频号：源能机密白皮书（克制灰白、深海蓝墨、利落几何） */
+body[data-test='valorant-agent'][data-theme='video'] {
+  --bg: #E8E5DF;
+  --bg-glow: rgba(15, 25, 35, 0.08);
+  --card: #F5F3EF;
+  --card-line: #0F1923;
+  --ink: #0F1923;
+  --ink-soft: #5A626A;
+  --accent: #D93846;
+  --accent-ink: #FFFFFF;
+  --shadow: 4px 4px 0px #0F1923;
+  --font-title: 'PingFang SC', system-ui, sans-serif;
+  --font-body: 'PingFang SC', sans-serif;
+  --title-weight: 800;
+  --tag-size: 44px;
+  --radius: 0px;
+  --pad: 26px;
+  --poster-kicker: '源能机密白皮书 · 特工适配说明';
+  --poster-serial: 'PROTOCOL // 02';
+  --poster-marker-alpha: 0.22;
+  --poster-watermark: 'VCT';
+  --bg-image: url('/assets/themes/valorant-agent/video.png');
+  --bg-image-scrim: rgba(232, 229, 223, 0.68);
+}
+
+/* ==========================================================================
+ * Brutalist：硬边错位阴影、直角、斜切按钮、超大背景水印
+ * ========================================================================== */
+
+body[data-test='valorant-agent'] .result::before {
+  content: var(--poster-kicker, 'VALORANT // 特工档案');
+  display: block;
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 3px solid var(--card-line);
+}
+
+body[data-test='valorant-agent'] .result-tag {
+  display: block;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+body[data-test='valorant-agent'] .result-anchor {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: var(--accent-ink);
+  background: var(--accent);
+  padding: 4px 12px;
+  margin-bottom: 16px;
+  transform: skewX(-8deg);
+  border-radius: 0;
+}
+
+body[data-test='valorant-agent'] .result-quote {
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.5;
+  padding: 12px 14px;
+  margin: 10px 0 18px;
+  background: var(--bg-glow);
+  border-left: 6px solid var(--accent);
+  border-radius: 0;
+}
+
+body[data-test='valorant-agent'] .result-desc {
+  font-size: 15px;
+  line-height: 1.78;
+}
+
+body[data-test='valorant-agent'] .option {
+  border: 2px solid var(--card-line);
+  border-radius: 0;
+  transition: transform 0.1s ease;
+}
+
+body[data-test='valorant-agent'] .option:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+body[data-test='valorant-agent'] .option b {
+  font-weight: 900;
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+body[data-test='valorant-agent'] .btn {
+  border-radius: 0;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+body[data-test='valorant-agent'] .btn-primary {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
