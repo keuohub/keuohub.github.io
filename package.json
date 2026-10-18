@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "mkdir -p dist && cp -r index.html test.html src tests themes assets codes.json dist",
     "start": "node server.js",
     "check": "node scripts/validate.mjs",
     "test": "node --test src/quiz.test.mjs worker/test.mjs",
